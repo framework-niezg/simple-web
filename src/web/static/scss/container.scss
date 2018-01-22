@@ -1,0 +1,16 @@
+ $color:#fff;
+  .container {
+      .head {
+        text-align: center;
+        color:$color;
+        font-size: 30px;
+        margin-bottom: 50px;
+        span {
+          font-size: 16px;
+        }
+        .el-col > .el-col {
+          padding: 20px 0;
+          border-right: solid 1px $color;
+        }
+      }
+  }

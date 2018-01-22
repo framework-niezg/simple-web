@@ -1,0 +1,21 @@
+<section data-th-fragment="aside">
+    <span class="none" id="menuLength" data-th-text="${#lists.size(menus)}"></span>
+    <ul class="menu slider">
+        <li data-th-each="menu : ${menus}" data-th-id="${menu.id}" data-th-class="'slide menu-0 '+ (${menu.selected} ? 'active' : '')">
+            <a data-th-if="${not #lists.isEmpty(menu.url)}" data-th-href="@{${menu.href}}">
+                <i data-th-attr="class='Hui-iconfont '+ ${menu.icon}"></i>
+                <span data-th-text="${menu.name}"></span>
+            </a>
+            <a data-th-if="${#lists.isEmpty(menu.url)}">
+                <i data-th-attr="class='Hui-iconfont '+ ${menu.icon}"></i>
+                <span data-th-text="${menu.name}"></span>
+            </a>
+            <ul class="sub-menu" data-th-if="${#lists.size(menu.children)}">
+                <li data-th-each="menu2 : ${menu.children}" data-th-id="${menu2.id}">
+                    <a class="link" data-th-if="${not #lists.isEmpty(menu2.url)}" data-th-href="@{${menu2.href}}" data-th-text="${menu2.name}"></a>
+                    <a class="link disabled" data-th-if="${#lists.isEmpty(menu2.url)}" data-th-text="${menu2.name}" disabled="disabled"></a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</section>

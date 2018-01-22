@@ -1,0 +1,17 @@
+.dialog-container{
+  .el-dialog__header {
+    padding: 10px 15px 10px;
+    border-bottom: 1px solid #ccc;
+    .el-dialog__title {
+      line-height: 24px;
+      font-size: 15px;
+    }
+  }
+  .el-dialog__body {
+    padding: 10px 20px;
+  }
+  .el-dialog__footer {
+    padding: 10px;
+    border-top: 1px solid #ccc;
+  }
+}

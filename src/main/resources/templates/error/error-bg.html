@@ -1,0 +1,16 @@
+<body class="error-bg" data-th-fragment="content(errorCode)">
+    <header class="header" data-th-include="error/error-header::header"></header>
+    <article class="article">
+        <main class="error-main">
+            <section class="error-content">
+                <h1 class="error-h1" data-th-text="${errorCode}"></h1>
+                <h2 class="error-info" data-th-text="${errorMessage}">等待用户返回结果</h2>
+                <h3 class="error-sub-info" data-th-text="#{error.tip}"></h3>
+                <section class="error-actions">
+                    <a class="error-btn" data-th-href="@{${backUrl}}">返回主页面</a>
+                </section>
+            </section>
+          </main>
+    </article>
+    <footer class="foot" data-th-include="fragment/footer::footer"></footer>
+</body>

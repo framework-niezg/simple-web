@@ -1,0 +1,26 @@
+<section class="footer" data-th-fragment="footer">
+    <div id="userChangePass" class="l-modal" style="display:none">
+        <section class="l-mongolia">
+        </section>
+        <section class="l-panel">
+            <section class="l-title">
+                用户密码修改
+            </section>
+            <section class="l-content">
+                <section><label>旧 密 码&nbsp;&nbsp;</label><label><input type="password" id="oldPasswd" data-th-placeholder="请输入旧密码"/></label></section>
+                <section><label>新 密 码&nbsp;&nbsp;</label><label><input type="password" id="passwd" data-th-placeholder="请输入新密码"/></label></section>
+                <section><label>确认新密码</label><label><input type="password" id="passwdSure" data-th-placeholder="请输入新密码"/></label></section>
+            </section>
+            <section class="l-foot">
+                <button class="sure" id="userResetPass">修改</button>
+                <button class="cancel" id="userCancelPass">取消</button>
+            </section>
+        </section>
+    </div>
+    <div id="message" style="display:none">
+        <label id="messageContent"></label>
+    </div>
+    <div id="messageRegister" style="display:none">
+        <label id="messageRegisterContent"></label>
+    </div>
+</section>

@@ -1,0 +1,12 @@
+<section id="header" data-th-fragment="header">
+    <section class="center-panel">
+       <!-- <section class="logo Hui-iconfont Hui-iconfont-comment1"></section>-->
+        <section class="logo-text" data-th-text="#{header.logo.title}"></section>
+        <section class="user-error-zone" data-th-name="${user}" style="font-size: 12px;font-family: Helvetica Neue For Number,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif;" >
+            <span id="contextPath" data-th-text="${contextPath}" style="display: none"></span>
+            <span class="Hui-iconfont">&#xe644;</span>
+            <label class="logout" ><a data-th-href="@{${backUrl}}">返回主页</a></label>
+        </section>
+    </section>
+</section>
+

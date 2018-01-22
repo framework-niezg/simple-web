@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>账号审核进度查询</title>
+    <link rel="stylesheet" href="../css/iconfont/iconfont.css" data-th-href="@{/css/iconfont/iconfont.css}" />
+    <link href="../css/reset.css" rel="stylesheet" data-th-href="@{/css/reset.css}" />
+    <link href="../css/global.css" rel="stylesheet" data-th-href="@{/css/global.css}" />
+</head>
+<body>
+<article class="page">
+    <section class="query-title">
+        <div class="title-label query-label " data-th-text="#{login.title}">账号审核进度查询</div>
+    </section>
+    <section class="form-panel query-panel">
+        <section class="query" style="display:none">
+            <label class="text-label query-text">账号查找</label>
+            <input required="required" id="checkCode" class="query-input" placeholder="请输入统一征信证号或机构代码" name="username" data-th-placeholder="#{login.form.input.username.placeholder}"/>
+            <button class="btn-query" type="button">查询</button>
+        </section>
+    </section>
+    <div>
+        <section class="form-panel query-panel">
+            <section class="query-result" data-th-text="${message}">
+                企业注册未通过审核，系企业注册的单位名称和统一征信部门的注册信息不一致，账号未通过审核，请检查注册信息，重新注册！
+                <!--账号审核中...-->
+            </section>
+            <div class="query-result" style="margin-top: 50px">
+                <label><a href="/logout">退出</a></label>
+            </div>
+        </section>
+        <section class="query-step">
+            <div>
+                <div class="step-number adopt">1</div>
+                <div class="step-number adopt">2</div>
+                <div class="step-number adopt">3</div>
+                <div class="step-number un-adopt">4</div>
+                <div class="step-number un-adopt">5</div>
+            </div>
+            <div>
+                <div class="step-text">账号信息填写</div>
+                <div class="step-text">注册请求提交</div>
+                <div class="step-text step-current">账号信息审核中</div>
+                <div class="step-text">审核通过</div>
+                <div class="step-text">登录</div>
+            </div>
+        </section>
+    </div>
+</article>
+<script type="text/javascript" src="../js/libs/jquery.js" data-th-src="@{/js/libs/jquery-3.0.0.min.js}"></script>
+<script type="text/javascript" src="../js/query.js" data-th-src="@{/js/query.js}"></script>
+</body>
+</html>

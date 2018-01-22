@@ -1,0 +1,7 @@
+/.idea/
+/target/
+*.iml
+*.xml.versionsBackup
+/logback/
+/simple-web.ipr
+/simple-web.iws

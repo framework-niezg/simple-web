@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>账号注册</title>
+    <link rel="stylesheet" href="../css/iconfont/iconfont.css" data-th-href="@{/css/iconfont/iconfont.css}" />
+    <link href="../css/reset.css" rel="stylesheet" data-th-href="@{/css/reset.css}" />
+    <link href="../css/global.css" rel="stylesheet" data-th-href="@{/css/global.css}" />
+    <link href="../../css/theme/theme-1.css" rel="stylesheet" data-th-href="@{/css/theme/theme-1.css}"/>
+</head>
+<body>
+<article class="page">
+    <section class="register-title">
+        <section class="register-title-img"></section>
+    </section>
+    <section class="form-register">
+        <form class="form-register-panel"  name="registerForm">
+            <section class="register-info">
+                <div>
+                    <label class="text-label register-label"><span class="must">*</span>用户名</label>
+                   <label>
+                       <input id="userName" class="register-input title"  name="account"/>
+                   </label>
+                </div>
+                <div>
+                    <label class="text-label register-label"><span class="must">*</span>账号密码</label>
+                    <input id="userPassword" class="register-input title" type="password"  name="passwd" />
+                </div>
+                <div>
+                    <label class="text-label register-label"><span class="must">*</span>单位名称</label>
+                    <input id="companyName" class="register-input title" type="text"  name="name" />
+                </div>
+                <div>
+                    <label class="text-label register-label"><span class="must">*</span>从业类型</label>
+                    <select class="register-input title" name="ent_type" style="height: 32px;">
+                        <option value="1">设计</option>
+                        <option value="2">施工</option>
+                        <option value="3">监理</option>
+                        <option value="4">检测</option>
+                        <option value="5">设备供应商</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-label register-label"><span class="must">*</span>统一信用代码</label>
+                    <input id="unionCode" class="register-input title" type="text" name="org_code" />
+                </div>
+                <div>
+                    <label class="text-label register-label"><span class="must">*</span>注册地</label>
+                    <select id="provinceCode" class="register-input title" name="area_code" style="height: 32px;">
+
+                    </select>
+                </div>
+                <div>
+                    <label class="text-label register-label"><span class="must">*</span>法人代表</label>
+                    <input  class="register-input title" type="text"  name="owner_name"/>
+                </div>
+                <div>
+                    <label class="text-label register-label"><span class="must">*</span>法人身份证号</label>
+                    <input  class="register-input title" type="text"  name="owner_idcode"/>
+                </div>
+                <div>
+                    <label class="text-label register-label">法人手机号</label>
+                    <input   class="register-input title" type="text"  name="owner_mobile"/>
+                </div>
+                <div>
+                    <label class="text-label register-label"><span class="must">*</span>信息维护人员</label>
+                    <input  class="register-input title" type="text"  name="admin_name"/>
+                </div>
+                <div>
+                    <label class="text-label register-label"><span class="must">*</span>维护电话</label>
+                    <input class="register-input title" type="text"  name="admin_phone"/>
+                </div>
+                <div>
+                    <label class="text-label register-label">营业执照号</label>
+                    <input class="register-input title" type="text"  name="bsls_code"/>
+                </div>
+                <div>
+                    <label class="text-label register-label">单位编号</label>
+                    <input  class="register-input title" type="text"  name="code"/>
+                </div>
+                <div>
+                    <label class="text-label register-label">单位电话</label>
+                    <input  class="register-input title" type="text"  name="ent_phone"/>
+                </div>
+                <div>
+                    <label class="text-label register-label">邮编</label>
+                    <input  class="register-input title" type="text"  name="ent_zipcode"/>
+                </div>
+                <div>
+                    <label class="text-label register-label">电子邮件</label>
+                    <input  class="register-input title" type="text"  name="ent_email"/>
+                </div>
+                <div>
+                    <label class="text-label register-label">通讯地址</label>
+                    <input  class="register-input title" type="text"  name="ent_address"/>
+                </div>
+                <div>
+                    <label class="text-label register-label">单位成立时间</label>
+                    <input   class="register-input title" type="text"  name="ent_address"/>
+                </div>
+                <div>
+                    <label class="text-label register-label">注册资金</label>
+                    <input   class="register-input title" type="text"  name="reg_funds"/>
+                </div>
+                <div>
+                    <label class="text-label register-label">账户开户行</label>
+                    <input  class="register-input title" type="text"  name="ent_bankname"/>
+                </div>
+                <div>
+                    <label class="text-label register-label">基本账户号</label>
+                    <input  class="register-input title" type="text"  name="ent_bankacount"/>
+                </div>
+                <div>
+                    <label class="text-label register-label">基本财务指标</label>
+                    <input   class="register-input title" type="text"  name="fin_text"/>
+                </div>
+                <div>
+                    <label class="text-label register-label">自由设备状况</label>
+                    <input   class="register-input title" type="text"  name="selfmac_text"/>
+                </div>
+                <div>
+                    <label class="text-label register-label">专业技术员人数</label>
+                    <input   class="register-input title" type="text"  name="prostaff_num"/>
+                </div>
+                <div>
+                    <label class="text-label register-label">高级工程师人数</label>
+                    <input  class="register-input title" type="text" name="sengineer_num"/>
+                </div>
+                <div>
+                    <label class="text-label register-label">初级工程师人数</label>
+                    <input   class="register-input title" type="text"  name="jenginner_num"/>
+                </div>
+                <div>
+                    <label class="text-label register-label">固定员工人数</label>
+                    <input  class="register-input title" type="text"  name="staff_num"/>
+                </div>
+                <div>
+                    <label class="text-label register-label">工程师人数</label>
+                    <input  class="register-input title" type="text"  name="menginner_num"/>
+                </div>
+                <div>
+                    <label class="text-label register-label">助理工程师人数</label>
+                    <input   class="register-input title" type="text"  name="aenginner_num"/>
+                </div>
+                <div>
+                    <label class="text-label register-label">其他基本状态</label>
+                    <input   class="register-input title" type="text"  name="other_text"/>
+                </div>
+                <div style="width:100%">
+                    <label class="text-label register-label-large">第一年业绩</label>
+                    <textarea class="register-area title"  name="year1_text" style="width: 80.4%"></textarea>
+                </div>
+                <div style="width:100%">
+                    <label class="text-label register-label-large">第二年业绩</label>
+                    <textarea class="register-area title"  name="year2_text" style="width: 80.4%"></textarea>
+                </div>
+                <div style="width:100%">
+                    <label class="text-label register-label-large">第三年业绩</label>
+                    <textarea class="register-area title"  name="year3_text" style="width: 80.4%"></textarea>
+                </div>
+                <div style="width:100%">
+                    <label class="text-label register-label-large">第四年业绩</label>
+                    <textarea class="register-area title"   name="year4_text" style="width: 80.4%"></textarea>
+                </div>
+                <div style="width:100%">
+                    <label class="text-label register-label-large">第五年业绩</label>
+                    <textarea class="register-area title"   name="year5_text" style="width: 80.4%"></textarea>
+                </div>
+                <div style="width:100%">
+                    <label class="text-label register-label-large">不良行为记录</label>
+                    <textarea class="register-area title"   name="bad_text" style="width: 80.4%"></textarea>
+                </div>
+                <div style="width:100%">
+                    <label class="text-label register-label-large">表彰奖励记录</label>
+                    <textarea class="register-area title"   name="nice_text" style="width: 80.4%"></textarea>
+                </div>
+                <div style="width:100%">
+                    <label class="text-label register-label-large">备注</label>
+                    <textarea class="register-area title"   name="memo" style="width: 80.4%"></textarea>
+                </div>
+                <br/>
+                <section class="red text-upload">
+                    <p>必须将以下证书(副本)扫描件作为附件上传,附件格式为JPG、JPEG、PDF，附件大小2M以内:</p>
+                    <p>1、从业单位资质证书</p>
+                    <p>2、营业执照</p>
+                    <p>3、统一社会信用代码</p>
+                    <p>4、安全生产许可证(仅对施工单位)</p>
+                    <p>5、单位注册必须填报联系人(单位)电话</p>
+                    <p>注册完成后，需将以上证书原件与复印件(加盖单位公章)带到交通信息与应急中心进行审核。</p>
+                    <p>地址：贵阳市延安路汇金国际广场40楼07室 联系人：彭松  电话：0851-85992659</p>
+                </section>
+                <br/>
+                <section id="uploadFileTop">
+                    <div class="uploadFileTop">
+                        <label id="fileLabel1">+</label>
+                        <input id="fileImg1" required="required" class="file" type="file" multiple="multiple"  name="files" accept=".JPG,.JPEG,.PDF"/>
+                    </div>
+                    <div class="uploadFileTop">
+                        <label id="fileLabel2">+</label>
+                        <input id="fileImg2" required="required" class="file" type="file" multiple="multiple"  name="files" accept=".JPG,.JPEG,.PDF"/>
+                    </div>
+                    <div class="uploadFileTop">
+                        <label id="fileLabel3">+</label>
+                        <input id="fileImg3" required="required" class="file" type="file" multiple="multiple"  name="files" accept=".JPG,.JPEG,.PDF"/>
+                    </div>
+                    <div class="uploadFileTop">
+                        <label id="fileLabel4">+</label>
+                        <input id="fileImg4" required="required" class="file" type="file" multiple="multiple"  name="files" accept=".JPG,.JPEG,.PDF"/>
+                    </div>
+                    <div class="uploadFileTop">
+                        <label id="fileLabel5">+</label>
+                        <input id="fileImg5" required="required" class="file" type="file" multiple="multiple"  name="files" accept=".JPG,.JPEG,.PDF"/>
+                    </div>
+                </section>
+                <br/>
+            </section>
+
+        </form>
+        <section class="btn-panel">
+             <button class="register-btn next-btn submit-btn">提交注册</button>
+             <button class="register-btn back-btn">返回登录</button>
+        </section>
+    </section>
+</article>
+<footer class="foot" data-th-include="fragment/footer::footer">
+
+</footer>
+<script type="text/javascript" src="../js/libs/jquery.js" data-th-src="@{/js/libs/jquery-3.0.0.min.js}"></script>
+<script type="text/javascript" src="../js/register.js" data-th-src="@{/js/register.js}"></script>
+</body>
+</html>
