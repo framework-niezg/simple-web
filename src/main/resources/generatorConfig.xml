@@ -8,13 +8,13 @@
 			<property name="suppressAllComments" value="true" />
 		</commentGenerator>
 		<jdbcConnection driverClass="org.h2.Driver"
-			connectionURL="jdbc:h2:file:${user.home}/cdm/data/cdm" userId="sa"
+			connectionURL="jdbc:h2:file:${user.home}/simple-web/data/simple-web" userId="sa"
 			password="">
 		</jdbcConnection>
 		<javaTypeResolver>
 			<property name="forceBigDecimals" value="false" />
 		</javaTypeResolver>
-		<javaModelGenerator targetPackage="com.zjcds.dp.cdm.domain.entity"
+		<javaModelGenerator targetPackage="com.zjcds.template.simpleweb.domain.entity"
 			targetProject="target">
 			<property name="enableSubPackages" value="false" />
 		</javaModelGenerator>
