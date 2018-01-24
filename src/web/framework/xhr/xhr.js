@@ -2,7 +2,6 @@
  * Created by Administrator on 2016/8/19.
  */
 import Final from "src/config"
-import axios from 'axios';
 import Qs from "qs"
 import $ from "jquery"
 
@@ -30,8 +29,8 @@ export default class XHR {
        }
     }
     static decodeURL(url){
-      //let uri = "/cdm/";
-      let uri="../../";
+      //let uri = "../";//开发环境
+      let uri="../../";//生产环境
       return uri+Final.URL[url];
     }
     static downLoad(id){
