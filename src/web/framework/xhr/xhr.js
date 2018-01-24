@@ -29,8 +29,8 @@ export default class XHR {
        }
     }
     static decodeURL(url){
-      //let uri = "../";//开发环境
-      let uri="../../";//生产环境
+      let uri = "/develop/";//开发环境
+      //let uri="../";//生产环境
       return uri+Final.URL[url];
     }
     static downLoad(id){
