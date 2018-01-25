@@ -1,6 +1,6 @@
 package com.zjcds.template.simpleweb.utils;
 
-import com.zjcds.template.simpleweb.domain.entity.User;
+import com.zjcds.template.simpleweb.domain.entity.jpa.um.User;
 import com.zjcds.template.simpleweb.domain.priv.RoleGrantedAuthority;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;

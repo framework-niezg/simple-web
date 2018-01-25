@@ -1,4 +1,4 @@
-package com.zjcds.template.simpleweb.domain.entity;
+package com.zjcds.template.simpleweb.domain.entity.jpa.um;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterators;

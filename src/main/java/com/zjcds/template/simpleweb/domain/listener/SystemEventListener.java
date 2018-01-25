@@ -1,6 +1,6 @@
 package com.zjcds.template.simpleweb.domain.listener;
 
-import com.zjcds.template.simpleweb.domain.entity.User;
+import com.zjcds.template.simpleweb.domain.entity.jpa.um.User;
 import com.zjcds.template.simpleweb.domain.event.SysLogEvent;
 import com.zjcds.template.simpleweb.domain.event.UserAddEvent;
 import com.zjcds.template.simpleweb.domain.event.UserDeleteEvent;

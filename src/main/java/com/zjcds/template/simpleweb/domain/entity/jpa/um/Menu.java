@@ -1,4 +1,4 @@
-package com.zjcds.template.simpleweb.domain.entity;
+package com.zjcds.template.simpleweb.domain.entity.jpa.um;
 
 import org.hibernate.annotations.Type;
 

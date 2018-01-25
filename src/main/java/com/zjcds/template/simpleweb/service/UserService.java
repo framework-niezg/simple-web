@@ -4,9 +4,9 @@ import com.zjcds.common.base.domain.page.Paging;
 import com.zjcds.common.jpa.PageResult;
 import com.zjcds.template.simpleweb.domain.dto.RoleForm;
 import com.zjcds.template.simpleweb.domain.dto.UserForm;
-import com.zjcds.template.simpleweb.domain.entity.Menu;
-import com.zjcds.template.simpleweb.domain.entity.Role;
-import com.zjcds.template.simpleweb.domain.entity.User;
+import com.zjcds.template.simpleweb.domain.entity.jpa.um.Menu;
+import com.zjcds.template.simpleweb.domain.entity.jpa.um.Role;
+import com.zjcds.template.simpleweb.domain.entity.jpa.um.User;
 
 
 import java.util.List;

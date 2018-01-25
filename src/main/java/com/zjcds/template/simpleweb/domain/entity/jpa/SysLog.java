@@ -1,4 +1,4 @@
-package com.zjcds.template.simpleweb.domain.entity;
+package com.zjcds.template.simpleweb.domain.entity.jpa;
 
 import com.zjcds.template.simpleweb.utils.WebSecurityUtils;
 import lombok.Getter;

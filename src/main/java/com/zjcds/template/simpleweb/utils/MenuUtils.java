@@ -5,7 +5,7 @@ import com.google.common.collect.FluentIterable;
 import com.zjcds.common.dozer.DozerConfiguration;
 
 import com.zjcds.template.simpleweb.domain.dto.MenuForm;
-import com.zjcds.template.simpleweb.domain.entity.Menu;
+import com.zjcds.template.simpleweb.domain.entity.jpa.um.Menu;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

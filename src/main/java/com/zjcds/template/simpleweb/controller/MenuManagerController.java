@@ -4,7 +4,7 @@ import com.zjcds.common.dozer.DozerConfiguration;
 import com.zjcds.common.jsonview.annotations.JsonViewException;
 import com.zjcds.common.jsonview.utils.ResponseResult;
 import com.zjcds.template.simpleweb.domain.dto.MenuForm;
-import com.zjcds.template.simpleweb.domain.entity.Menu;
+import com.zjcds.template.simpleweb.domain.entity.jpa.um.Menu;
 import com.zjcds.template.simpleweb.service.UserService;
 import com.zjcds.template.simpleweb.utils.MenuUtils;
 import io.swagger.annotations.Api;

@@ -10,8 +10,8 @@ import com.zjcds.common.jsonview.utils.ResponseResult;
 
 import com.zjcds.template.simpleweb.domain.dto.MenuForm;
 import com.zjcds.template.simpleweb.domain.dto.UserForm;
-import com.zjcds.template.simpleweb.domain.entity.User;
-import com.zjcds.template.simpleweb.jpa.RoleDao;
+import com.zjcds.template.simpleweb.domain.entity.jpa.um.User;
+import com.zjcds.template.simpleweb.dao.jpa.um.RoleDao;
 import com.zjcds.template.simpleweb.service.UserService;
 import com.zjcds.template.simpleweb.utils.MenuUtils;
 import io.swagger.annotations.Api;

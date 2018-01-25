@@ -1,12 +1,12 @@
-package com.zjcds.template.simpleweb.jpa.impl;
+package com.zjcds.template.simpleweb.dao.jpa.um.impl;
 
 import com.zjcds.common.base.domain.page.Paging;
 import com.zjcds.common.jpa.PageResult;
 import com.zjcds.common.jpa.annotation.NearestEntityGraph;
 
-import com.zjcds.template.simpleweb.domain.entity.User;
-import com.zjcds.template.simpleweb.jpa.UserDao;
-import com.zjcds.template.simpleweb.jpa.UserDaoCustom;
+import com.zjcds.template.simpleweb.domain.entity.jpa.um.User;
+import com.zjcds.template.simpleweb.dao.jpa.um.UserDao;
+import com.zjcds.template.simpleweb.dao.jpa.um.UserDaoCustom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.EntityGraph;
 
