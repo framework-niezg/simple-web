@@ -124,4 +124,11 @@ public interface UserService {
      */
     public void changePassword(ChangePasswordForm changePasswordForm);
 
+    /**
+     * 重置用户密码
+     * @param id 用户密码
+     * @return  用户新的密码
+     */
+    public String resetUserPassword(Integer id);
+
 }

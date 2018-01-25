@@ -95,16 +95,23 @@ public class UserManagerController {
         return new ResponseResult(null);
     }
 
+    @PutMapping("/{id}/resetPassword")
+    @ApiOperation(value ="用户密码重置",produces = "application/json;charset=utf-8")
+    public ResponseResult<Void> resetUserPassword(@PathVariable("id") Integer id){
+        String newPassword = userService.resetUserPassword(id);
+        return new ResponseResult(newPassword);
+    }
+
     @GetMapping("/current/menus")
     @ApiOperation(value ="查询当前登录用户的菜单项",produces = "application/json;charset=utf-8")
     public ResponseResult<List<MenuForm>> queryCurrentUserMenu(){
            return new ResponseResult(MenuUtils.transfromToMenuForm(userService.queryMenusForCurrentUser()));
     }
 
-    @PutMapping("current/change/password")
+    @PutMapping("/current/change/password")
     @ApiOperation(value ="修改当前用户密码",produces = "application/json;charset=utf-8")
     public ResponseResult<Void> changePassword(ChangePasswordForm changePasswordForm){
-
+        userService.changePassword(changePasswordForm);
         return new ResponseResult(null);
     }
 
