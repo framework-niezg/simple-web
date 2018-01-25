@@ -8,6 +8,7 @@ import com.zjcds.common.jsonview.annotations.JsonFailureBindResult;
 import com.zjcds.common.jsonview.annotations.JsonViewException;
 import com.zjcds.common.jsonview.utils.ResponseResult;
 
+import com.zjcds.template.simpleweb.domain.dto.ChangePasswordForm;
 import com.zjcds.template.simpleweb.domain.dto.MenuForm;
 import com.zjcds.template.simpleweb.domain.dto.UserForm;
 import com.zjcds.template.simpleweb.domain.entity.jpa.um.User;
@@ -98,6 +99,13 @@ public class UserManagerController {
     @ApiOperation(value ="查询当前登录用户的菜单项",produces = "application/json;charset=utf-8")
     public ResponseResult<List<MenuForm>> queryCurrentUserMenu(){
            return new ResponseResult(MenuUtils.transfromToMenuForm(userService.queryMenusForCurrentUser()));
+    }
+
+    @PutMapping("current/change/password")
+    @ApiOperation(value ="修改当前用户密码",produces = "application/json;charset=utf-8")
+    public ResponseResult<Void> changePassword(ChangePasswordForm changePasswordForm){
+
+        return new ResponseResult(null);
     }
 
 }

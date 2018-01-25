@@ -6,6 +6,7 @@ import com.zjcds.common.base.domain.page.Paging;
 import com.zjcds.common.dozer.DozerConfiguration;
 import com.zjcds.common.jpa.PageResult;
 
+import com.zjcds.template.simpleweb.domain.dto.ChangePasswordForm;
 import com.zjcds.template.simpleweb.domain.dto.MenuForm;
 import com.zjcds.template.simpleweb.domain.dto.RoleForm;
 import com.zjcds.template.simpleweb.domain.dto.UserForm;
@@ -278,4 +279,15 @@ public class UserServiceImpl implements UserService {
         return roleDao.queryMenuFor(roleId);
     }
 
+    @Override
+    @Transactional
+    public void changePassword(ChangePasswordForm changePasswordForm) {
+        User user = WebSecurityUtils.currentUser();
+        Assert.notNull(user,"登录后才能修改密码！");
+        User userFromDb = userDao.findById(user.getId());
+        Assert.notNull(userFromDb,"修改密码失败，当前用户账号不存在["+user.getAccount()+"]" );
+        Assert.isTrue(passwordEncoder
+                        .matches(changePasswordForm.getOldPassword(),userFromDb.getPassword())
+                            ,"输入的旧密码错误！");
+    }
 }
