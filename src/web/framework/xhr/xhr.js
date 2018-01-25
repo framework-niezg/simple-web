@@ -29,8 +29,7 @@ export default class XHR {
        }
     }
     static decodeURL(url){
-      let uri = "/develop/";//开发环境
-      //let uri="../";//生产环境
+      let uri = process.env.NODE_ENV == "development" ? "/develop/" : "../../";//当前node环境
       return uri+Final.URL[url];
     }
     static downLoad(id){
@@ -38,7 +37,7 @@ export default class XHR {
         return true;
     }
     static isGet(obj){
-        return obj.param&&obj.param.method==="GET"?true:false;
+        return obj.param&&obj.param.method==="GET" ? true : false;
     }
     static complete(xhr,callBack){
       let status = xhr.status.toString().substring(0,1);
