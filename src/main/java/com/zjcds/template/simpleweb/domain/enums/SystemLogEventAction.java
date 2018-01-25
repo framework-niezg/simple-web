@@ -1,8 +1,8 @@
 package com.zjcds.template.simpleweb.domain.enums;
 
 
-import com.zjcds.template.simpleweb.domain.entity.Role;
-import com.zjcds.template.simpleweb.domain.entity.User;
+import com.zjcds.template.simpleweb.domain.entity.jpa.um.Role;
+import com.zjcds.template.simpleweb.domain.entity.jpa.um.User;
 import lombok.Getter;
 import org.apache.commons.collections.CollectionUtils;
 

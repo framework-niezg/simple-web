@@ -1,7 +1,7 @@
 package com.zjcds.template.simpleweb.domain.dto;
 
 import com.zjcds.common.base.domain.BaseBean;
-import com.zjcds.template.simpleweb.domain.entity.User;
+import com.zjcds.template.simpleweb.domain.entity.jpa.um.User;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;

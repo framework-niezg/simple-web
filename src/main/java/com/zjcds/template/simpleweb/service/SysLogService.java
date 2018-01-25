@@ -1,7 +1,7 @@
 package com.zjcds.template.simpleweb.service;
 
-import com.zjcds.template.simpleweb.domain.entity.SysLog;
-import com.zjcds.template.simpleweb.jpa.SysLogDao;
+import com.zjcds.template.simpleweb.domain.entity.jpa.SysLog;
+import com.zjcds.template.simpleweb.dao.jpa.SysLogDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

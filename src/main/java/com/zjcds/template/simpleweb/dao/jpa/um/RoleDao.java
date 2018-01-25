@@ -1,9 +1,9 @@
-package com.zjcds.template.simpleweb.jpa;
+package com.zjcds.template.simpleweb.dao.jpa.um;
 
 
 import com.zjcds.common.jpa.CustomRepostory;
-import com.zjcds.template.simpleweb.domain.entity.Menu;
-import com.zjcds.template.simpleweb.domain.entity.Role;
+import com.zjcds.template.simpleweb.domain.entity.jpa.um.Menu;
+import com.zjcds.template.simpleweb.domain.entity.jpa.um.Role;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

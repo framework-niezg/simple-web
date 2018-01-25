@@ -1,7 +1,7 @@
 package com.zjcds.template.simpleweb.domain.event;
 
 
-import com.zjcds.template.simpleweb.domain.entity.User;
+import com.zjcds.template.simpleweb.domain.entity.jpa.um.User;
 import com.zjcds.template.simpleweb.domain.enums.SystemLogEventAction;
 
 /**

@@ -1,7 +1,7 @@
-package com.zjcds.template.simpleweb.jpa;
+package com.zjcds.template.simpleweb.dao.jpa.um;
 
 
-import com.zjcds.template.simpleweb.domain.entity.Menu;
+import com.zjcds.template.simpleweb.domain.entity.jpa.um.Menu;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

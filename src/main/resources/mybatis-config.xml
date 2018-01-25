@@ -7,6 +7,6 @@
 		<setting name="lazyLoadingEnabled" value="true" />
 	</settings>
 	<typeAliases>
-		<package name="com.zjcds.dp.cdm.domain.entity"/>
+		<package name="com.zjcds.template.simpleweb.domain.entity.mybatis"/>
 	</typeAliases>
 </configuration>
