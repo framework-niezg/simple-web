@@ -2,6 +2,7 @@ package com.zjcds.template.simpleweb.service;
 
 import com.zjcds.common.base.domain.page.Paging;
 import com.zjcds.common.jpa.PageResult;
+import com.zjcds.template.simpleweb.domain.dto.ChangePasswordForm;
 import com.zjcds.template.simpleweb.domain.dto.RoleForm;
 import com.zjcds.template.simpleweb.domain.dto.UserForm;
 import com.zjcds.template.simpleweb.domain.entity.jpa.um.Menu;
@@ -117,6 +118,17 @@ public interface UserService {
      */
     public List<Menu> queryMenuFor(Integer roleId);
 
+    /**
+     * 修改用户密码
+     * @param changePasswordForm
+     */
+    public void changePassword(ChangePasswordForm changePasswordForm);
 
+    /**
+     * 重置用户密码
+     * @param id 用户密码
+     * @return  用户新的密码
+     */
+    public String resetUserPassword(Integer id);
 
 }

@@ -6,6 +6,7 @@ import com.zjcds.common.base.domain.page.Paging;
 import com.zjcds.common.dozer.DozerConfiguration;
 import com.zjcds.common.jpa.PageResult;
 
+import com.zjcds.template.simpleweb.domain.dto.ChangePasswordForm;
 import com.zjcds.template.simpleweb.domain.dto.MenuForm;
 import com.zjcds.template.simpleweb.domain.dto.RoleForm;
 import com.zjcds.template.simpleweb.domain.dto.UserForm;
@@ -26,6 +27,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -54,6 +56,8 @@ public class UserServiceImpl implements UserService {
     private SystemEventPublishService systemEventPublishService;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Value("${com.zjcds.web.security.initPassword:123456}")
+    private String initPassword;
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
@@ -278,4 +282,27 @@ public class UserServiceImpl implements UserService {
         return roleDao.queryMenuFor(roleId);
     }
 
+    @Override
+    @Transactional
+    public void changePassword(ChangePasswordForm changePasswordForm) {
+        User user = WebSecurityUtils.currentUser();
+        Assert.notNull(user,"登录后才能修改密码！");
+        User userFromDb = userDao.findById(user.getId());
+        Assert.notNull(userFromDb,"修改密码失败，当前用户账号不存在["+user.getAccount()+"]" );
+        Assert.isTrue(passwordEncoder
+                        .matches(changePasswordForm.getOldPassword(),userFromDb.getPassword())
+                            ,"输入的旧密码错误！");
+        userFromDb.setPassword(passwordEncoder.encode(changePasswordForm.getNewPassword()));
+        userDao.save(userFromDb);
+    }
+
+    @Override
+    @Transactional
+    public String resetUserPassword(Integer id) {
+        User user = userDao.findById(id);
+        Assert.notNull(user,"未找到对应[id="+id+"]的用户！");
+        user.setPassword(passwordEncoder.encode(initPassword));
+        userDao.save(user);
+        return initPassword;
+    }
 }
