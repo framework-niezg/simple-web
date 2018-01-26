@@ -12,7 +12,9 @@
                 &ndash;&gt;
                 <li data-th-if="${user.account} == 'root'"><a class="link" data-th-href="@{/module/manager/userManager}">用户管理</a></li>
                 <li data-th-if="${user.account} == 'root'"><a class="link" data-th-href="@{/module/manager/roleManager}">角色管理</a></li>
-                --><li><a class="link" data-th-href="@{/logout}">退出</a></li>
+                -->
+                <li><a class="link" id="btnResetPass">修改密码</a></li>
+                <li><a class="link" data-th-href="@{/logout}">退出</a></li>
             </ul>
         </section>
         <span class="line"></span>

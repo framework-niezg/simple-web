@@ -49,7 +49,7 @@ var App = {
     },
     resetPass:function(old,newPass){
         $.ajax({
-            url:"/user/userInfo/changePassword",
+            url:"../user/changePassword",
             method:"post",
             type:"json",
             contentType:"application/json",
@@ -93,6 +93,7 @@ var App = {
         window.location.href = App.getItem("contextPath").contextPath+ "/logout";
     },
     layerOpen:function(){
+        App.resetAllInfo();
         $("#userChangePass").show();
     },
     layerOut:function(){
@@ -103,6 +104,32 @@ var App = {
             contextPath:$("#contextPath").text()
         })
 
+    },
+    eyes:function(name,flag){
+        if(flag == "down" ){
+            $("#"+name).hide();
+            $("#"+name+"Text").show();
+        }else{
+            $("#"+name+"Text").hide();
+            $("#"+name).show();
+        }
+    },
+    resetAllInfo(){
+        $("#oldPasswd").val("");
+        $("#passwd").val("");
+        $("#passwdSure").val("");
+        $("#oldPasswdText").val("");
+        $("#passwdText").val("");
+        $("#passwdSureText").val("");
+    },
+    showMessage:function(text){
+        $("#messageContent").text(text);
+        $("#message").show(function(){
+            setTimeout(function(){
+                $("#message").hide();
+                $("#messageContent").text("");
+            },2000)
+        });
     },
      setItem:function(name,value){
         if(window.localStorage){
@@ -129,28 +156,33 @@ var App = {
 $(function(){
     App.initUser();
     App.resetMenu();
-    /*$(".slide").on("click",function(){
-        if(menuOut){
-            App.asideIn();
-        }else{
-            App.asideOut();
-        }
-    })*/
     $("#btnLogOut").on("click",function(){
         App.logOut();
+    })
+    $(".input-next").on("change",function(){
+        var id = $(this).attr("id"),val=$(this).val();
+        $("#"+id+"Text").val(val);
+    });
+    $(".iconfont-pass").mousedown(function(){
+        var name = $(this).attr("name");
+        App.eyes(name,"down")
+    })
+    $(".iconfont-pass").mouseup(function(){
+        var name = $(this).attr("name");
+        App.eyes(name,"up")
     })
     $("#userResetPass").on("click",function(){
        var old =$("#oldPasswd").val();
        var newPass =$("#passwd").val();
-        var newPassSure =$("#passwdSure").val();
+       var newPassSure =$("#passwdSure").val();
         if(old==""){
-            alert("旧密码不能为空")
+            App.showMessage("旧密码不能为空")
         }else if(newPass==""){
-            alert("新密码不能为空");
+            App.showMessage("新密码不能为空")
         }else if(newPassSure==""){
-            alert("请确认新密码");
+            App.showMessage("请确认新密码")
         }else if(newPassSure!==newPass){
-            alert("两次新密码输入不一致");
+            App.showMessage("两次新密码输入不一致")
         }else{
             App.resetPass(old,newPass);
         }
@@ -159,10 +191,7 @@ $(function(){
         App.layerOut();
     })
     $("#btnResetPass").on("click",function(){
-          $("#oldPasswd").val("");
-          $("#passwd").val("");
-          $("#passwdSure").val("");
-        App.layerOpen();
+          App.layerOpen();
     })
     $(".menu-0").on("click",function(event){
         $(this).addClass("temp-active").siblings().removeClass("temp-active");

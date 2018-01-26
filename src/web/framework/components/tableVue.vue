@@ -166,7 +166,7 @@
       //用户点击重置
       handleReset(row){
         this.message('info',"功能维护中");
-        //this.$store.dispatch(this.currentTable+'/reset',row);
+        //this.$store.dispatch(this.currentTable+'/resetPass',row);
       },
       handleRowChange(val,old){
         console.log(val,old);

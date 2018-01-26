@@ -36,6 +36,8 @@ export const USER_ADD="USER_ADD"//新增用户
 export const USER_CHANGE="USER_CHANGE"//新增用户
 export const USER_ROLES = "USER_ROLES"//用户已有的角色
 export const USER_CURRENT="USER_CURRENT"//当前用户信息
+export const RESETPASS="RESETPASS"//重置密码
+
 
 
 

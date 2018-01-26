@@ -63,7 +63,8 @@ const state = {
     current:"USER_CURRENT",
     has:"USER_ROLES",
     transfer:"TRANSFER_CHANGE",
-    tableSelected:"TABLE_SELECTED"
+    tableSelected:"TABLE_SELECTED",
+    resetPass:"RESETPASS"
   },
   dialog:{
     _default:{
@@ -268,6 +269,18 @@ const actions = {
       data.success ? commit(types.SUCCESS, parse) : commit(types.ERROR, parse);
     })
   },
+  //修改密码
+  resetPass({commit, state}, data){
+    console.log(data.id);
+  /*  XHR.restfulMiddle({
+      url: state.url.change,
+      method: "PUT",
+      think: {id: state.currentUser.id},
+      data:Object.assign({},state.sendInfo,{roles:a}),
+    }, function (data) {
+      data.success ? commit(types.SUCCESS, {type:"reset",data:data}) : commit(types.ERROR, {type:"reset",data:data});
+    })*/
+  },
   //弹出窗口
   dialogSure({dispatch, state},data){
     let {dialog} = data;
@@ -290,7 +303,7 @@ const actions = {
     commit(types[state.actions.current], data);
     commit(types[state.actions.change]);
     commit(types[state.actions.has],data.roles)
-  },
+  }
 }
 const mutations = {
   //查
@@ -323,6 +336,10 @@ const mutations = {
     state.param = Object.assign({},state.param,param);
   },
   [types[state.actions.roles]](state, data){
+    state.transferData = data;
+  },
+  //重置密码
+  [types[state.actions.resetPass]](state, data){
     state.transferData = data;
   },
   //穿梭狂数据改变监听
