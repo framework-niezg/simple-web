@@ -165,8 +165,8 @@
       },
       //用户点击重置
       handleReset(row){
-        this.message('info',"功能维护中");
-        //this.$store.dispatch(this.currentTable+'/resetPass',row);
+        //this.message('info',"功能维护中");
+        this.$store.dispatch(this.currentTable+'/resetPass',row);
       },
       handleRowChange(val,old){
         console.log(val,old);
@@ -211,13 +211,17 @@
           case"delete":
           case"add":
           case"change":
-            this.$store.dispatch(this.currentTable + '/getItems');
+            this.message('success',data.msg);
+            break;
+          case"reset":
+            this.message('success',"密码重置成功，新密码为" + data.data);
             break;
           default:
             break;
         }
+        this.$store.dispatch(this.currentTable + '/getItems');
         this.$store.dispatch(this.currentTable + '/dialogClose');
-        this.message('success',data.msg);
+
       },
       error(data){
         this.message('warning',data.msg);

@@ -49,21 +49,16 @@ var App = {
     },
     resetPass:function(old,newPass){
         $.ajax({
-            url:"../user/changePassword",
-            method:"post",
+            url:"../users/current/change/password",
+            method:"PUT",
             type:"json",
             contentType:"application/json",
             data:JSON.stringify({
-                id:App.getItem("user").id,
-                oldPasswd:old,
-                passwd:newPass
+                oldPassword:old,
+                newPassword:newPass
             }),
             success:function(data){
-                if(data.data !== "原密码错误"){
-                    App.layerOut();
-                }
-                App.message(data.data,2000)
-
+                App.message(data.data,2000);
             },
             error:function(data){
                 console.log(data)
@@ -88,7 +83,6 @@ var App = {
         }
     },
     logOut:function(){
-        console.log(window.location);
         App.getItem("contextPath").contextPath;
         window.location.href = App.getItem("contextPath").contextPath+ "/logout";
     },

@@ -49,6 +49,7 @@ const state = {
     transfer: "roles",
     has: "roleHasMenu",
     add:"addUser",
+    reset:"resetUserPass"
   },
   actions:{
     param:"PARAM_CHANGE",
@@ -272,14 +273,13 @@ const actions = {
   //修改密码
   resetPass({commit, state}, data){
     console.log(data.id);
-  /*  XHR.restfulMiddle({
-      url: state.url.change,
+    XHR.restfulMiddle({
+      url: state.url.reset,
       method: "PUT",
-      think: {id: state.currentUser.id},
-      data:Object.assign({},state.sendInfo,{roles:a}),
+      think: {id: data.id},
     }, function (data) {
       data.success ? commit(types.SUCCESS, {type:"reset",data:data}) : commit(types.ERROR, {type:"reset",data:data});
-    })*/
+    })
   },
   //弹出窗口
   dialogSure({dispatch, state},data){

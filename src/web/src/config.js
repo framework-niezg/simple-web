@@ -12,6 +12,7 @@ let final = {
     deleteUser: "users/{id}",//删除某用户信息
     addUser: "users",//新增用户
     changeUser: "users/{id}",//修改用户
+    resetUserPass:"users/{id}/resetPassword",
     //*******************************************************角色管理 roles***********************************************************//
     roles: "roles",//查询所有角色信息
     deleteRole: "roles/{id}",//删除角色信息
