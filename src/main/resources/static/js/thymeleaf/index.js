@@ -58,19 +58,28 @@ var App = {
                 newPassword:newPass
             }),
             success:function(data){
-                App.message(data.data,2000);
+                App.message(data,2000);
             },
             error:function(data){
                 console.log(data)
             }
         })
     },
-    message:function(msg,time){
-        $("#messageContent").text(msg);
-        $("#message").show();
-        setTimeout(function(){
-            $("#message").hide();
-        },time)
+    message:function(data,time){
+        if(data.success){
+            $("#userChangePass").hide(function(){
+                $("#messageContent").text(data.msg);
+                $("#message").show();
+                setTimeout(function(){
+                    $("#message").hide();
+                },time)
+            });
+        }else{
+            var index = data.msg.indexOf(":");
+            var text = data.msg.substring(index+1);
+         //   var message =
+           $("#userChangePassError").text(text);
+        }
     },
     resetMenu:function(){
         if(parseInt($("#menuLength").text())>6){
@@ -115,15 +124,17 @@ var App = {
         $("#oldPasswdText").val("");
         $("#passwdText").val("");
         $("#passwdSureText").val("");
+        $("#userChangePassError").val("");
     },
     showMessage:function(text){
-        $("#messageContent").text(text);
+       /* $("#messageContent").text(text);
         $("#message").show(function(){
             setTimeout(function(){
                 $("#message").hide();
                 $("#messageContent").text("");
-            },2000)
-        });
+            },3000)
+        });*/
+        $("#userChangePassError").text(text);
     },
      setItem:function(name,value){
         if(window.localStorage){
@@ -156,6 +167,10 @@ $(function(){
     $(".input-next").on("change",function(){
         var id = $(this).attr("id"),val=$(this).val();
         $("#"+id+"Text").val(val);
+    });
+    $(".input-next").on("focus",function(){
+        console.log(123)
+          $("#userChangePassError").text("");
     });
     $(".iconfont-pass").mousedown(function(){
         var name = $(this).attr("name");
