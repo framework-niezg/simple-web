@@ -1,6 +1,6 @@
 package com.zjcds.template.simpleweb.controller;
 
-import com.zjcds.common.dozer.DozerConfiguration;
+import com.zjcds.common.dozer.BeanPropertyCopyUtils;
 import com.zjcds.common.jsonview.annotations.JsonViewException;
 import com.zjcds.common.jsonview.utils.ResponseResult;
 import com.zjcds.template.simpleweb.domain.dto.MenuForm;
@@ -37,7 +37,7 @@ public class MenuManagerController {
     @ApiOperation(value ="查询所有菜单项，以列表方式进行组织",produces = "application/json;charset=utf-8")
     public ResponseResult<List<MenuForm.Owner>> queryAllMenuForList(){
         Set<Menu> menus = userService.queryAllMenus();
-        return new ResponseResult<>(DozerConfiguration.BeanCopyUtils.copy(MenuUtils.orderMenuCollectionByCode(menus),MenuForm.Owner.class));
+        return new ResponseResult<>(BeanPropertyCopyUtils.copy(MenuUtils.orderMenuCollectionByCode(menus),MenuForm.Owner.class));
     }
 
     @GetMapping("/cascade")

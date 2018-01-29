@@ -2,7 +2,7 @@ package com.zjcds.template.simpleweb.utils;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.FluentIterable;
-import com.zjcds.common.dozer.DozerConfiguration;
+import com.zjcds.common.dozer.BeanPropertyCopyUtils;
 
 import com.zjcds.template.simpleweb.domain.dto.MenuForm;
 import com.zjcds.template.simpleweb.domain.entity.jpa.um.Menu;
@@ -90,7 +90,7 @@ public abstract class MenuUtils {
                     logger.trace("菜单"+rootMenu.getCode()+"被隐藏，将不被显示！");
                 }
                 else {
-                    rootMenuForm = DozerConfiguration.BeanCopyUtils.copy(rootMenu,MenuForm.class);
+                    rootMenuForm = BeanPropertyCopyUtils.copy(rootMenu,MenuForm.class);
                     menuForms.add(rootMenuForm);
                     fillChildren(rootMenuForm , menus);
                 }
@@ -119,7 +119,7 @@ public abstract class MenuUtils {
                         logger.trace("菜单"+directChildMenu.getCode()+"被隐藏，将不被显示！");
                         continue;
                     }
-                    menuForm = DozerConfiguration.BeanCopyUtils.copy(directChildMenu,MenuForm.class);
+                    menuForm = BeanPropertyCopyUtils.copy(directChildMenu,MenuForm.class);
                     parent.addChild(menuForm);
                     fillChildren(menuForm,menus);
                 }

@@ -1,7 +1,7 @@
 package com.zjcds.template.simpleweb.controller;
 
 import com.zjcds.common.base.domain.page.Paging;
-import com.zjcds.common.dozer.DozerConfiguration;
+import com.zjcds.common.dozer.BeanPropertyCopyUtils;
 import com.zjcds.common.jpa.PageResult;
 import com.zjcds.common.jpa.utils.PageUtils;
 import com.zjcds.common.jsonview.annotations.JsonFailureBindResult;
@@ -70,14 +70,14 @@ public class UserManagerController {
     @ApiOperation(value ="根据id查询单个user对象",produces = "application/json;charset=utf-8")
     public ResponseResult<UserForm.OwnerWithRole> queryUser(@PathVariable("id") Integer id) throws Exception{
         User user = userService.queryUserWithRole(id);
-        return new ResponseResult(DozerConfiguration.BeanCopyUtils.copy(user,UserForm.OwnerWithRole.class));
+        return new ResponseResult(BeanPropertyCopyUtils.copy(user,UserForm.OwnerWithRole.class));
     }
 
     @PostMapping
     @ApiOperation(value ="添加一个用户,可包含角色信息",produces = "application/json;charset=utf-8")
     @JsonFailureBindResult
     public ResponseResult<UserForm.OwnerWithRole> addUser(@Valid @RequestBody UserForm.Add user,BindingResult errorResult ){
-        return new ResponseResult(DozerConfiguration.BeanCopyUtils.copy(userService.addUser(user),UserForm.OwnerWithRole.class));
+        return new ResponseResult(BeanPropertyCopyUtils.copy(userService.addUser(user),UserForm.OwnerWithRole.class));
     }
 
     @PutMapping("/{id}")
@@ -85,7 +85,7 @@ public class UserManagerController {
     @JsonFailureBindResult
     public ResponseResult<UserForm.OwnerWithRole> updateUser(@PathVariable("id") Integer id,@Valid @RequestBody UserForm.Update user,BindingResult errorResult){
         Assert.notNull(id,"要更新的用户id不能为空！");
-        return new ResponseResult(DozerConfiguration.BeanCopyUtils.copy(userService.updateUser(id,user),UserForm.OwnerWithRole.class));
+        return new ResponseResult(BeanPropertyCopyUtils.copy(userService.updateUser(id,user),UserForm.OwnerWithRole.class));
     }
 
     @DeleteMapping("/{id}")
@@ -110,7 +110,7 @@ public class UserManagerController {
 
     @PutMapping("/current/change/password")
     @ApiOperation(value ="修改当前用户密码",produces = "application/json;charset=utf-8")
-    public ResponseResult<Void> changePassword(ChangePasswordForm changePasswordForm){
+    public ResponseResult<Void> changePassword(@Valid @RequestBody ChangePasswordForm changePasswordForm,BindingResult errorResult){
         userService.changePassword(changePasswordForm);
         return new ResponseResult(null);
     }

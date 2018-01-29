@@ -1,6 +1,6 @@
 package com.zjcds.template.simpleweb;
 
-import com.zjcds.common.dozer.DozerConfiguration;
+import com.zjcds.common.dozer.BeanPropertyCopyUtils;
 
 import com.zjcds.template.simpleweb.domain.dto.RoleForm;
 import com.zjcds.template.simpleweb.domain.dto.UserForm;
@@ -36,7 +36,7 @@ public class DozerTest extends DaoTestSupport{
         RoleForm.Reference roleRef = new RoleForm.Reference();
         roleRef.setId(122);
         ref.getRoles().add(roleRef);
-        User user = DozerConfiguration.BeanCopyUtils.copy(ref, User.class);
+        User user = BeanPropertyCopyUtils.copy(ref, User.class);
         Set<Role> roles = user.getRoles();
         for (Role role : roles){
             System.out.println(role.getClass());
@@ -53,7 +53,7 @@ public class DozerTest extends DaoTestSupport{
         RoleForm.Reference roleRef = new RoleForm.Reference();
         roleRef.setId(122);
         ref.getRoles().add(roleRef);
-        User userEntity = DozerConfiguration.BeanCopyUtils.copy(ref,User.class);
+        User userEntity = BeanPropertyCopyUtils.copy(ref,User.class);
         userEntity.setStatus(User.UserStatus.active);
         userEntity.setPassword("fafa");
         if(CollectionUtils.isNotEmpty(userEntity.getRoles())){

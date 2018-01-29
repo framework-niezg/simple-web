@@ -3,7 +3,7 @@ package com.zjcds.template.simpleweb.service.impl;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterators;
 import com.zjcds.common.base.domain.page.Paging;
-import com.zjcds.common.dozer.DozerConfiguration;
+import com.zjcds.common.dozer.BeanPropertyCopyUtils;
 import com.zjcds.common.jpa.PageResult;
 
 import com.zjcds.template.simpleweb.domain.dto.ChangePasswordForm;
@@ -107,7 +107,7 @@ public class UserServiceImpl implements UserService {
         if(havedUser != null){
             throw new IllegalArgumentException("创建用户失败：用户账号["+user.getAccount()+"]已存在，请换一个用户名试下！");
         }
-        User userEntity = DozerConfiguration.BeanCopyUtils.copy(user,User.class);
+        User userEntity = BeanPropertyCopyUtils.copy(user,User.class);
         userEntity.setStatus(User.UserStatus.active);
         userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
         if(CollectionUtils.isNotEmpty(userEntity.getRoles())){
@@ -257,7 +257,7 @@ public class UserServiceImpl implements UserService {
         Assert.notNull(roleForm,"要添加的角色信息不能为空！");
         Role haveRole = roleDao.findByName(roleForm.getName());
         Assert.isNull(haveRole,"要添加的角色名称["+roleForm.getName()+"]已存在!");
-        Role roleEntity = DozerConfiguration.BeanCopyUtils.copy(roleForm,Role.class);
+        Role roleEntity = BeanPropertyCopyUtils.copy(roleForm,Role.class);
         if(CollectionUtils.isNotEmpty(roleEntity.getMenus())){
             Set<Menu> menus = new HashSet<>();
             Menu menuEntity = null;
