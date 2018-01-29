@@ -5,6 +5,7 @@
 var login = {
     init:function(){
         this.login();
+        this.isLogin();
     },
     login:function(){
         $(".login-input").on("focus",function(){
@@ -19,6 +20,10 @@ var login = {
             $("#remember").attr("checked",true);
         }
     },
+    isLogin:function(){
+        var user = login.getItem("userName");
+        $("#userName").val(user ? user.userName : "");
+    },
     isRemember:function(){
         var user = "";
         if(window.localStorage){
@@ -28,11 +33,18 @@ var login = {
         }
         return user;
     },
-    setItem:function(user){
+    setItem:function(k,v){
         if(window.localStorage){
-            window.localStorage.setItem("user",user);
+            window.localStorage.setItem(k,v);
         }else{
-            window.user =userName;
+            window[k] =v;
+        }
+    },
+    getItem:function(k){
+        if(window.localStorage){
+            return JSON.parse(window.localStorage.getItem(k));
+        }else{
+           return JSON.parse(window[k]);
         }
     },
     rememberMe:function(userName){
@@ -62,7 +74,6 @@ $(function(){
 })
 function checkForm(){
     var userName = $("#userName").val(),userPassword=$("#userPassword").val(),flag=null;
-    var userRole = $("#userRole").val();
     if(userName.trim()==""||userPassword.trim()==""){
         $("#error").html("账号或密码不能为空");
         flag = false;
@@ -73,20 +84,7 @@ function checkForm(){
             login.leaveMe();
         }*/
         $(".login-btn").text("登录中....");
-        $.ajax({
-            url:"/userExist",
-            async: false,
-            method:"post",
-            type:"json",
-            contentType:"application/json",
-            data:JSON.stringify({userName:userName,password:userPassword}),
-            success:function(data){
-                data.success ? login.setItem(JSON.stringify(data.data)):""
-            },
-            error:function(){
-
-            }
-        });
+        login.setItem("userName",JSON.stringify({userName:userName}));
         flag = true;
     }
     return flag;

@@ -47,9 +47,23 @@ var App = {
             duration: App.duration
         });
     },
+    decodeUrl:function(){
+        var href = window.location.href,port=window.location.port;
+        var index = href.indexOf(port);
+        var hash = href.substring(index+port.length);
+        var a = hash.split("/");
+        var length = a.length-1;
+        var uri ="";
+        for(var i=0;i<length;i++){
+            uri+="../";
+        }
+        console.log(uri);
+        return uri
+    },
     resetPass:function(old,newPass){
+        var uri = App.decodeUrl();
         $.ajax({
-            url:"../users/current/change/password",
+            url:uri+"users/current/change/password",
             method:"PUT",
             type:"json",
             contentType:"application/json",
@@ -169,7 +183,6 @@ $(function(){
         $("#"+id+"Text").val(val);
     });
     $(".input-next").on("focus",function(){
-        console.log(123)
           $("#userChangePassError").text("");
     });
     $(".iconfont-pass").mousedown(function(){

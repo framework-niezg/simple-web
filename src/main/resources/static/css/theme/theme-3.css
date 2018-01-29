@@ -582,12 +582,14 @@
 }
 
 #message {
-    background-color: #fff;
     position: fixed;
     left: 50%;
     top: 120px;
     padding: 5px 20px;
-    border: 1px solid #ccc;
+    border: 1px solid #409eff;
+    background-color: #409eff;
+    color: white;
+    border-radius: 5px;
 }
 
 #messageRegister {
