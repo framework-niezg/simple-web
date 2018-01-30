@@ -14,7 +14,7 @@
     </section>
     <section class="form-login">
         <form class="form-panel" action="./login" method="POST" onsubmit="return checkForm()">
-            <p id="error" class="error red common" data-th-text="${T(com.zjcds.template.simpleweb.utils.WebSecurityUtils).printErrorMessage(#ctx.httpServletRequest,#ctx.httpServletResponse)}"></p>
+            <p id="error" class="error red common" data-th-text="${errorMessage}"></p>
             <section class="inner-panel">
                 <div>
                     <img src="../img/login/icon_un.png" data-th-src="@{./images/login/icon_un.png}" width="27" height="27" />

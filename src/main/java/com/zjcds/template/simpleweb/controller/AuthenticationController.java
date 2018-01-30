@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -62,11 +63,13 @@ public class AuthenticationController implements InitializingBean{
      * @return
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(){
+    public String login(Model model,HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse){
         if(WebSecurityUtils.isLogined())
             return "redirect:"+loginSuccessSkipToUrl;
-        else
+        else {
+            model.addAttribute("errorMessage",WebSecurityUtils.printErrorMessage(httpServletRequest,httpServletResponse));
             return "login";
+        }
     }
 
     /**

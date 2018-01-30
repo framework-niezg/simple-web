@@ -3,32 +3,23 @@
     xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <fileSets>
+
     <fileSet filtered="true" packaged="true" encoding="UTF-8">
       <directory>src/main/java</directory>
       <includes>
         <include>**/*.java</include>
       </includes>
     </fileSet>
+    <fileSet filtered="true" packaged="true" encoding="UTF-8">
+      <directory>src/test/java</directory>
+      <includes>
+        <include>**/*.java</include>
+      </includes>
+    </fileSet>
     <fileSet encoding="UTF-8">
-      <directory>src/main/web</directory>
-      <includes>
-        <include>**/*.vm</include>
-        <include>**/*.xml</include>
-        <include>**/*.html</include>
-        <include>**/*.txt</include>
-      </includes>
+      <directory>src/web</directory>
     </fileSet>
-    <fileSet filtered="false" encoding="UTF-8">
-      <directory>src/main/resources</directory>
-      <excludes>
-        <exclude>**/*.properties</exclude>
-        <exclude>**/*.xml</exclude>
-      </excludes>
-      <includes>
-        <include>**/*.vm</include>
-        <include>**/*.html</include>
-      </includes>
-    </fileSet>
+
     <fileSet filtered="true" encoding="UTF-8">
       <directory>src/main/resources</directory>
       <includes>
@@ -38,198 +29,36 @@
     </fileSet>
 
     <fileSet encoding="UTF-8">
-      <directory>src/main/web</directory>
-      <includes>
-        <include>**/*.</include>
-        <include>**/*.woff</include>
-        <include>**/*.sha256</include>
-        <include>**/*.test</include>
-        <include>**/*.bin/babel-external-helpers</include>
-        <include>**/*.flow</include>
-        <include>**/*.targ</include>
-        <include>**/*.extend/Cakefile</include>
-        <include>**/*.info</include>
-        <include>**/*.bin/errno</include>
-        <include>**/*.bin/sshpk-conv</include>
-        <include>**/*.bin/image-size</include>
-        <include>**/*.bin/babel-doctor</include>
-        <include>**/*._getnative/LICENSE</include>
-        <include>**/*.eslintrc</include>
-        <include>**/*.markdown</include>
-        <include>**/*.gz</include>
-        <include>**/*.bin/lessc</include>
-        <include>**/*.BSD</include>
-        <include>**/*.bin/esparse</include>
-        <include>**/*.cmd</include>
-        <include>**/*.1</include>
-        <include>**/*.0</include>
-        <include>**/*.jshintignore</include>
-        <include>**/*.ext1</include>
-        <include>**/*.ext2</include>
-        <include>**/*.ext3</include>
-        <include>**/*.babelrc</include>
-        <include>**/*.isstring/LICENSE</include>
-        <include>**/*.bat</include>
-        <include>**/*.tap</include>
-        <include>**/*.requirejs</include>
-        <include>**/*.gif</include>
-        <include>**/*.json5</include>
-        <include>**/*.bin/webpack</include>
-        <include>**/*.css</include>
-        <include>**/*.csr</include>
-        <include>**/*.jscsrc</include>
-        <include>**/*.bin/acorn</include>
-        <include>**/*.ls</include>
-        <include>**/*.gitkeep</include>
-        <include>**/*.bin/dist-es6-bootstrap</include>
-        <include>**/*.js/LICENCE</include>
-        <include>**/*.sha1</include>
-        <include>**/*.js/Cakefile</include>
-        <include>**/*.conf</include>
-        <include>**/*.gnu</include>
-        <include>**/*.keepme</include>
-        <include>**/*.md</include>
-        <include>**/*.map</include>
-        <include>**/*.bin/loose-envify</include>
-        <include>**/*.pick/LICENSE</include>
-        <include>**/*.isempty/LICENSE</include>
-        <include>**/*.bin/sshpk-verify</include>
-        <include>**/*.bin/jsesc</include>
-        <include>**/*.js/LICENSE</include>
-        <include>**/*.APACHE2</include>
-        <include>**/*.yml</include>
-        <include>**/*.bin/semver</include>
-        <include>**/*.min-wd</include>
-        <include>**/*.template/LICENSE</include>
-        <include>**/*.c</include>
-        <include>**/*.ttf</include>
-        <include>**/*.realpath/LICENSE</include>
-        <include>**/*.bin/csso</include>
-        <include>**/*.bin/mkdirp</include>
-        <include>**/*.bin/svgo</include>
-        <include>**/*.npmignore</include>
-        <include>**/*.jpg</include>
-        <include>**/*.pem</include>
-        <include>**/*.bin/gulp</include>
-        <include>**/*.el</include>
-        <include>**/*.bin/html-minifier</include>
-        <include>**/*.png</include>
-        <include>**/*.reg</include>
-        <include>**/*.md5</include>
-        <include>**/*.cfg</include>
-        <include>**/*.patch</include>
-        <include>**/*.egg-info/PKG-INFO</include>
-        <include>**/*.keep</include>
-        <include>**/*.opts</include>
-        <include>**/*.iml</include>
-        <include>**/*.bin/uuid</include>
-        <include>**/*.ts</include>
-        <include>**/*.tmpl</include>
-        <include>**/*.js</include>
-        <include>**/*.bin/jstransform</include>
-        <include>**/*.isplainobject/LICENSE</include>
-        <include>**/*.skip</include>
-        <include>**/*.bin/rimraf</include>
-        <include>**/*.LICENSE</include>
-        <include>**/*.eot</include>
-        <include>**/*.tern-port</include>
-        <include>**/*.bin/mime</include>
-        <include>**/*.bin/browserslist</include>
-        <include>**/*.gitmodules</include>
-        <include>**/*.otf</include>
-        <include>**/*.eslintignore</include>
-        <include>**/*._basetostring/LICENSE</include>
-        <include>**/*.bin/esvalidate</include>
-        <include>**/*.isarray/LICENSE</include>
-        <include>**/*.deps</include>
-        <include>**/*.bin/strip-indent</include>
-        <include>**/*.bin/commonize</include>
-        <include>**/*.key</include>
-        <include>**/*.bin/dist-es6-run</include>
-        <include>**/*.bin/webpack-dev-server</include>
-        <include>**/*.jsm</include>
-        <include>**/*.bin/regjsparser</include>
-        <include>**/*.bin/jasmine</include>
-        <include>**/*.bin/cssesc</include>
-        <include>**/*.coffee</include>
-        <include>**/*.isarguments/LICENSE</include>
-        <include>**/*.bin/which</include>
-        <include>**/*.bin/cleancss</include>
-        <include>**/*.editorconfig</include>
-        <include>**/*.sh</include>
-        <include>**/*.jshintrc</include>
-        <include>**/*.bnf</include>
-        <include>**/*.bin/har-validator</include>
-        <include>**/*.hbs</include>
-        <include>**/*.dat</include>
-        <include>**/*.assignwith/LICENSE</include>
-        <include>**/*.mkd</include>
-        <include>**/*.keys/LICENSE</include>
-        <include>**/*.gradle</include>
-        <include>**/*.bin/json5</include>
-        <include>**/*.tern-project</include>
-        <include>**/*.bin/sshpk-sign</include>
-        <include>**/*.scss</include>
-        <include>**/*.words/LICENSE</include>
-        <include>**/*.bin/repeating</include>
-        <include>**/*.bin/he</include>
-        <include>**/*.ico</include>
-        <include>**/*.bin/babel</include>
-        <include>**/*.mapvalues/LICENSE</include>
-        <include>**/*.json</include>
-        <include>**/*.bin/js-yaml</include>
-        <include>**/*.name</include>
-        <include>**/*.bin/detect-indent</include>
-        <include>**/*.deburr/LICENSE</include>
-        <include>**/*.bin/window-size</include>
-        <include>**/*.types</include>
-        <include>**/*.MIT</include>
-        <include>**/*.less</include>
-        <include>**/*.bin/bin-version-check</include>
-        <include>**/*.bin/strip-bom</include>
-        <include>**/*.ejs</include>
-        <include>**/*.crt</include>
-        <include>**/*.bin/babylon</include>
-        <include>**/*.woff2</include>
-        <include>**/*.svg</include>
-        <include>**/*.jade</include>
-        <include>**/*.bin/dist-es6</include>
-        <include>**/*.extend/LICENSE</include>
-        <include>**/*.indexof/LICENSE</include>
-        <include>**/*.in</include>
-        <include>**/*.bin/user-home</include>
-        <include>**/*.assign/LICENSE</include>
-        <include>**/*.escape/LICENSE</include>
-        <include>**/*.templatesettings/LICENSE</include>
-        <include>**/*.bin/babel-node</include>
-        <include>**/*.bin/qunit</include>
-        <include>**/*.jsbeautifyrc</include>
-        <include>**/*.bin/dateformat</include>
-        <include>**/*.gitattributes</include>
-        <include>**/*.tgz</include>
-        <include>**/*.bin/find-versions</include>
-        <include>**/*.bin/uglifyjs</include>
-        <include>**/*.omit/LICENSE</include>
-        <include>**/*._root/LICENSE</include>
-      </includes>
-    </fileSet>
-    <fileSet encoding="UTF-8">
       <directory>src/main/resources</directory>
       <includes>
-        <include>**/*.eot</include>
-        <include>**/*.woff</include>
-        <include>**/*.svg</include>
-        <include>**/*.png</include>
-        <include>**/*.ttf</include>
-        <include>**/*.js</include>
-        <include>**/*.css</include>
+        <include>**/*.*</include>
       </includes>
+      <excludes>
+        <exclude>**/*.properties</exclude>
+        <exclude>**/*.xml</exclude>
+      </excludes>
     </fileSet>
-    <fileSet encoding="UTF-8">
+
+    <fileSet filtered="true" encoding="UTF-8">
       <directory>src/test/resources</directory>
       <includes>
-        <include>**/*.sql</include>
+        <include>**/*.properties</include>
+        <include>**/*.xml</include>
       </includes>
+    </fileSet>
+
+    <fileSet encoding="UTF-8">
+      <directory></directory>
+      <includes>
+        <include>.gitignore</include>
+      </includes>
+    </fileSet>
+
+    <fileSet encoding="UTF-8">
+      <directory>.idea</directory>
+      <excludes>
+        <exclude>**/*.*</exclude>
+      </excludes>
     </fileSet>
 
   </fileSets>
