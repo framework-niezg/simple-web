@@ -80,7 +80,7 @@ public class CustomWebSecurityConfiguration implements ApplicationContextAware{
                     .failureUrl(LoginFailUrl)
                 .and()
                     .authorizeRequests()
-                    .antMatchers("/js/**","/css/**","/html/**","/images/**").permitAll()
+                    .antMatchers("/resources/**").permitAll()
                     .antMatchers("/api/**","/swagger-resources/**","/v2/**").permitAll()
                     .antMatchers(LoginUrl + "*").permitAll()
                     .antMatchers("/druid/**","/mgmt/**").hasRole(WebSecurityUtils.RootUserRole)
