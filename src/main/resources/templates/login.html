@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8"/>
     <title>登录</title>
-    <link rel="stylesheet" href="../css/iconfont/iconfont.css" data-th-href="@{./css/iconfont/iconfont.css}" />
-    <link href="../css/reset.css" rel="stylesheet" data-th-href="@{./css/reset.css}" />
-    <link href="../css/global.css" rel="stylesheet" data-th-href="@{./css/global.css}" />
+    <link rel="stylesheet" href="../css/iconfont/iconfont.css" data-th-href="@{/resources/css/iconfont/iconfont.css}" />
+    <link href="../css/reset.css" rel="stylesheet" data-th-href="@{/resources/css/reset.css}" />
+    <link href="../css/global.css" rel="stylesheet" data-th-href="@{/resources/css/global.css}" />
 </head>
 <body class="body" data-th-style="#{login.body.background}">
 <article class="page">
@@ -17,12 +17,12 @@
             <p id="error" class="error red common" data-th-text="${errorMessage}"></p>
             <section class="inner-panel">
                 <div>
-                    <img src="../img/login/icon_un.png" data-th-src="@{./images/login/icon_un.png}" width="27" height="27" />
+                    <img src="../img/login/icon_un.png" data-th-src="@{/resources/images/login/icon_un.png}" width="27" height="27" />
                     <label class="type-title">账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号：</label>
                     <input id="userName" class="login-input" name="username" data-th-placeholder="#{login.form.input.username.placeholder}"/>
                 </div>
                 <div>
-                    <img src="../img/login/icon_pd.png" data-th-src="@{./images/login/icon_pd.png}" width="27" height="27" />
+                    <img src="../img/login/icon_pd.png" data-th-src="@{/resources/images/login/icon_pd.png}" width="27" height="27" />
                     <label class="type-title">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
                     <input  id="userPassword" class="login-input" type="password" name="password" data-th-placeholder="#{login.form.input.pwd.placeholder}"/>
                 </div>
@@ -40,7 +40,7 @@
 
     </section>
 </article>
-<script type="text/javascript" src="../js/libs/jquery.js" data-th-src="@{./js/libs/jquery-3.0.0.min.js}"></script>
-<script type="text/javascript" src="../js/login.js" data-th-src="@{./js/login.js}"></script>
+<script type="text/javascript" src="../js/libs/jquery.js" data-th-src="@{/resources/js/libs/jquery-3.0.0.min.js}"></script>
+<script type="text/javascript" src="../js/login.js" data-th-src="@{/resources/js/login.js}"></script>
 </body>
 </html>
