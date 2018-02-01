@@ -19,3 +19,8 @@ INSERT INTO t_id_generator(id_key,id_value) VALUES ('menu',1000)
 INSERT INTO t_role(id,name,description) VALUES(0,'root','超级管理员')
 INSERT INTO t_user(id,account,name,password,status) VALUES(1,'root','超级管理员','6ee93a8e0dba1d3e7d78be0403474aa82df9fdf68f13e748bb5bb539040f8b03efeb176ebb104e54','active')
 INSERT INTO r_user_role(user_id,role_id) VALUES(1,0)
+
+-- 添加权限部分的菜单项
+INSERT INTO t_menu (id, name, icon, url, code, hide) VALUES (1, '系统管理', 'Hui-iconfont-system', null, '900', 'N')
+INSERT INTO t_menu (id, name, icon, url, code, hide) VALUES (2, '账号管理', null, 'manager/userManager', '900100', 'N')
+INSERT INTO t_menu (id, name, icon, url, code, hide) VALUES (3, '角色管理', null, 'manager/roleManager', '900200', 'N')
