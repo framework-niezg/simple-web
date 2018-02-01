@@ -229,7 +229,8 @@
       message(type,msg){
         this.$message({
           type: type,
-          message:msg
+          message:msg,
+          duration:"5000"
         });
       }
     },

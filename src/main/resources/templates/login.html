@@ -23,8 +23,8 @@
                 </div>
                 <div>
                     <img src="../img/login/icon_pd.png" data-th-src="@{/resources/images/login/icon_pd.png}" width="27" height="27" />
-                    <label class="type-title">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
-                    <input  id="userPassword" class="login-input" type="password" name="password" data-th-placeholder="#{login.form.input.pwd.placeholder}"/>
+                    <label  class="type-title">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
+                    <input  th:autocomplete="new-password" id="userPassword" class="login-input" type="password" name="password" data-th-placeholder="#{login.form.input.pwd.placeholder}"/>
                 </div>
                 <div style="margin-top: 15px">
                     <button class="login-btn" type="submit" data-th-text="#{login.form.button.login.title}"></button>

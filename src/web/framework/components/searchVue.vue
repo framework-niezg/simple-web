@@ -3,11 +3,12 @@
     <div v-for="item in searchOptions" class="inline-block">
       <el-col v-if="item.type === 'input'">
         <label class="label-text">{{item.text}}</label>
-        <el-input  :value="searchOptions[item.name]" class="basic-input" size="mini" :name="item.name" @change.native="inputChange"></el-input>
+        <input style="display:none"/>
+        <el-input  auto-complete="new-password" class="basic-input" size="mini" :name="item.name" @change.native="inputChange"></el-input>
       </el-col>
       <el-col v-if="item.type === 'select'">
         <label class="label-text">{{item.text}}</label>
-        <el-select :value="searchOptions[item.name]" class="basic-select" size="mini" placeholder="请选择">
+        <el-select :value="searchOptions[item.name]"  class="basic-select" size="mini" placeholder="请选择">
           <el-option
             v-for="type in item.data"
             :key="type.value"
