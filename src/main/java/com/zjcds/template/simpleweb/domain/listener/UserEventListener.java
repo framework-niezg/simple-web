@@ -1,17 +1,13 @@
 package com.zjcds.template.simpleweb.domain.listener;
 
 import com.zjcds.template.simpleweb.domain.entity.jpa.um.User;
-import com.zjcds.template.simpleweb.domain.event.SysLogEvent;
 import com.zjcds.template.simpleweb.domain.event.UserAddEvent;
 import com.zjcds.template.simpleweb.domain.event.UserDeleteEvent;
 import com.zjcds.template.simpleweb.domain.event.UserUpdateEvent;
-import com.zjcds.template.simpleweb.service.SysLogService;
 import com.zjcds.template.simpleweb.utils.WebSecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,19 +15,9 @@ import org.springframework.stereotype.Service;
  * @author niezhegang
  */
 @Service
-public class SystemEventListener {
-    @Autowired
-    private SysLogService sysLogService;
+public class UserEventListener {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
-
-    @EventListener
-    @Async
-    public void sysLogEvent(SysLogEvent sysLogEvent){
-        sysLogService.saveSysLog(sysLogEvent.getOperationUser()
-                                ,sysLogEvent.getAction().getName()
-                                ,sysLogEvent.getDetail());
-    }
 
     @EventListener
     public void userAdd(UserAddEvent userAddEvent){

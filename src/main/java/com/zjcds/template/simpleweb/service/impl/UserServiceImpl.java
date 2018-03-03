@@ -6,6 +6,9 @@ import com.zjcds.common.base.domain.page.Paging;
 import com.zjcds.common.dozer.BeanPropertyCopyUtils;
 import com.zjcds.common.jpa.PageResult;
 
+import com.zjcds.common.syslog.domain.SysLogApplicationEvent;
+import com.zjcds.common.syslog.util.LogRegisterUtils;
+import com.zjcds.template.simpleweb.conf.SysLogApplicationEventConfiguration;
 import com.zjcds.template.simpleweb.domain.dto.ChangePasswordForm;
 import com.zjcds.template.simpleweb.domain.dto.MenuForm;
 import com.zjcds.template.simpleweb.domain.dto.RoleForm;
@@ -13,13 +16,13 @@ import com.zjcds.template.simpleweb.domain.dto.UserForm;
 import com.zjcds.template.simpleweb.domain.entity.jpa.um.Menu;
 import com.zjcds.template.simpleweb.domain.entity.jpa.um.Role;
 import com.zjcds.template.simpleweb.domain.entity.jpa.um.User;
-import com.zjcds.template.simpleweb.domain.event.UserAddEvent;
-import com.zjcds.template.simpleweb.domain.event.UserDeleteEvent;
-import com.zjcds.template.simpleweb.domain.event.UserUpdateEvent;
 import com.zjcds.template.simpleweb.dao.jpa.um.MenuDao;
 import com.zjcds.template.simpleweb.dao.jpa.um.RoleDao;
 import com.zjcds.template.simpleweb.dao.jpa.um.UserDao;
-import com.zjcds.template.simpleweb.service.SystemEventPublishService;
+import com.zjcds.template.simpleweb.domain.event.UserAddEvent;
+import com.zjcds.template.simpleweb.domain.event.UserDeleteEvent;
+import com.zjcds.template.simpleweb.domain.event.UserUpdateEvent;
+import com.zjcds.template.simpleweb.service.SpringEventPublishService;
 import com.zjcds.template.simpleweb.service.UserService;
 import com.zjcds.template.simpleweb.utils.WebSecurityUtils;
 import org.apache.commons.codec.binary.StringUtils;
@@ -33,10 +36,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * created date：2017-08-29
@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private MenuDao menuDao;
     @Autowired
-    private SystemEventPublishService systemEventPublishService;
+    private SpringEventPublishService systemEventPublishService;
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Value("${com.zjcds.web.security.initPassword:123456}")
@@ -121,7 +121,15 @@ public class UserServiceImpl implements UserService {
             userEntity.setRoles(roles);
         }
         userEntity = userDao.save(userEntity);
-        systemEventPublishService.publishSysLogEvent(new UserAddEvent(userEntity));
+        systemEventPublishService.publishApplicationEvent(SysLogApplicationEvent
+                .newBuilder(UserAddEvent.class)
+                .logEvent(LogRegisterUtils.getLogEvent(SysLogApplicationEventConfiguration.LogGroup_UM,SysLogApplicationEventConfiguration.LogEvent_UM_UserAdd))
+                .source(userEntity)
+                .evaluateVariable("userDetail",userDetail(userEntity))
+                .occurDate(new Date())
+                .operationUser(WebSecurityUtils.currentUserName())
+                .build()
+                );
         return userEntity;
     }
 
@@ -175,8 +183,69 @@ public class UserServiceImpl implements UserService {
             }
         }
         userEntity = userDao.save(userEntity);
-        systemEventPublishService.publishSysLogEvent(new UserUpdateEvent(userEntity));
+        systemEventPublishService.publishApplicationEvent(SysLogApplicationEvent
+                .newBuilder(UserUpdateEvent.class)
+                .logEvent(LogRegisterUtils.getLogEvent(SysLogApplicationEventConfiguration.LogGroup_UM,SysLogApplicationEventConfiguration.LogEvent_UM_UserUpdate))
+                .source(userEntity)
+                .evaluateVariable("userDetail",userDetail(userEntity))
+                .occurDate(new Date())
+                .operationUser(WebSecurityUtils.currentUserName())
+                .build()
+        );
         return userEntity;
+    }
+
+    private String userDetail(User user) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{")
+                .append("id=").append(user.getId()).append(",")
+                .append("账号=").append(user.getAccount()).append(",")
+                .append("显示名=").append(user.getName()).append(",")
+                .append("状态=").append(user.getStatus());
+        Set<Role> roles = user.getRoles();
+        if(CollectionUtils.isNotEmpty(roles)){
+            sb.append(",");
+            int i = 0;
+            for(Role role : roles){
+                if(i == 0){
+                    sb.append("分配角色=[");
+                }
+                else {
+                    sb.append(",");
+                }
+                sb.append(role.getName());
+                i++;
+            }
+            sb.append("]");
+        }
+        sb.append("}");
+        return sb.toString();
+    }
+
+    private String roleDetail(Role role) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("{")
+                .append("id=").append(role.getId()).append(",")
+                .append("名称=").append(role.getName()).append(",")
+                .append("描述=").append(role.getDesc());
+        Set<Menu> menus = role.getMenus();
+        if(CollectionUtils.isNotEmpty(menus)){
+            sb.append(",");
+            int i = 0;
+            for(Menu menu : menus){
+                if(i == 0){
+                    sb.append("分配菜单=[");
+                }
+                else {
+                    sb.append(",");
+                }
+                sb.append(menu.getName());
+                i++;
+            }
+            sb.append("]");
+        }
+        sb.append("}");
+        return sb.toString();
     }
 
     @Transactional
@@ -189,7 +258,14 @@ public class UserServiceImpl implements UserService {
         //做逻辑删除
         user.setStatus(User.UserStatus.delete);
         userDao.save(user);
-        systemEventPublishService.publishSysLogEvent(new UserDeleteEvent(user));
+        systemEventPublishService.publishApplicationEvent(SysLogApplicationEvent
+                .newBuilder(UserDeleteEvent.class)
+                .logEvent(LogRegisterUtils.getLogEvent(SysLogApplicationEventConfiguration.LogGroup_UM,SysLogApplicationEventConfiguration.LogEvent_UM_UserDelete))
+                .source(user)
+                .occurDate(new Date())
+                .operationUser(WebSecurityUtils.currentUserName())
+                .build()
+        );
     }
 
     @Transactional
@@ -201,6 +277,14 @@ public class UserServiceImpl implements UserService {
         Integer count = userDao.countUserFor(id);
         Assert.isTrue(count == null || count <= 0,"该角色["+role.getName()+"]已被用户使用，请删除与相关用户的关联后再试！");
         roleDao.delete(id);
+        systemEventPublishService.publishApplicationEvent(SysLogApplicationEvent
+                .newBuilder(SysLogApplicationEvent.class)
+                .logEvent(LogRegisterUtils.getLogEvent(SysLogApplicationEventConfiguration.LogGroup_UM,SysLogApplicationEventConfiguration.LogEvent_UM_RoleDelete))
+                .source(role)
+                .occurDate(new Date())
+                .operationUser(WebSecurityUtils.currentUserName())
+                .build()
+        );
     }
 
     @Transactional
@@ -248,7 +332,17 @@ public class UserServiceImpl implements UserService {
                 roleEntity.getMenus().add(menuEntity);
             }
         }
-        return roleDao.save(roleEntity);
+        roleEntity = roleDao.save(roleEntity);
+        systemEventPublishService.publishApplicationEvent(SysLogApplicationEvent
+                .newBuilder(SysLogApplicationEvent.class)
+                .logEvent(LogRegisterUtils.getLogEvent(SysLogApplicationEventConfiguration.LogGroup_UM,SysLogApplicationEventConfiguration.LogEvent_UM_RoleUpdate))
+                .source(roleEntity)
+                .evaluateVariable("roleDetail",roleDetail(roleEntity))
+                .occurDate(new Date())
+                .operationUser(WebSecurityUtils.currentUserName())
+                .build()
+        );
+        return roleEntity;
     }
 
     @Transactional
@@ -269,6 +363,15 @@ public class UserServiceImpl implements UserService {
             roleEntity.setMenus(menus);
         }
         roleEntity = roleDao.save(roleEntity);
+        systemEventPublishService.publishApplicationEvent(SysLogApplicationEvent
+                .newBuilder(SysLogApplicationEvent.class)
+                .logEvent(LogRegisterUtils.getLogEvent(SysLogApplicationEventConfiguration.LogGroup_UM,SysLogApplicationEventConfiguration.LogEvent_UM_RoleAdd))
+                .source(roleEntity)
+                .evaluateVariable("roleDetail",roleDetail(roleEntity))
+                .occurDate(new Date())
+                .operationUser(WebSecurityUtils.currentUserName())
+                .build()
+        );
         return roleEntity;
     }
 
@@ -294,6 +397,15 @@ public class UserServiceImpl implements UserService {
                             ,"输入的旧密码错误！");
         userFromDb.setPassword(passwordEncoder.encode(changePasswordForm.getNewPassword()));
         userDao.save(userFromDb);
+        systemEventPublishService.publishApplicationEvent(SysLogApplicationEvent
+                .newBuilder(SysLogApplicationEvent.class)
+                .logEvent(LogRegisterUtils.getLogEvent(SysLogApplicationEventConfiguration.LogGroup_UM,SysLogApplicationEventConfiguration.LogEvent_UM_PasswordChange))
+                .source(userFromDb)
+                .occurDate(new Date())
+                .operationUser(WebSecurityUtils.currentUserName())
+                .build()
+        );
+
     }
 
     @Override
@@ -303,6 +415,14 @@ public class UserServiceImpl implements UserService {
         Assert.notNull(user,"未找到对应[id="+id+"]的用户！");
         user.setPassword(passwordEncoder.encode(initPassword));
         userDao.save(user);
+        systemEventPublishService.publishApplicationEvent(SysLogApplicationEvent
+                .newBuilder(SysLogApplicationEvent.class)
+                .logEvent(LogRegisterUtils.getLogEvent(SysLogApplicationEventConfiguration.LogGroup_UM,SysLogApplicationEventConfiguration.LogEvent_UM_PasswordReset))
+                .source(user)
+                .occurDate(new Date())
+                .operationUser(WebSecurityUtils.currentUserName())
+                .build()
+        );
         return initPassword;
     }
 }

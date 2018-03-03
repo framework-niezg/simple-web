@@ -1,9 +1,8 @@
 package com.zjcds.template.simpleweb.service;
 
-
-import com.zjcds.template.simpleweb.domain.event.SysLogEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationEvent;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.stereotype.Service;
@@ -13,7 +12,7 @@ import org.springframework.stereotype.Service;
  * @author niezhegang
  */
 @Service
-public class SystemEventPublishService implements ApplicationEventPublisherAware{
+public class SpringEventPublishService implements ApplicationEventPublisherAware{
 
     private ApplicationEventPublisher applicationEventPublisher;
 
@@ -24,8 +23,12 @@ public class SystemEventPublishService implements ApplicationEventPublisherAware
         this.applicationEventPublisher = applicationEventPublisher;
     }
 
-    public void publishSysLogEvent(SysLogEvent sysLogEvent){
-        applicationEventPublisher.publishEvent(sysLogEvent);
+    /**
+     * 发布spring应用事件
+     * @param applicationEvent
+     */
+    public void publishApplicationEvent(ApplicationEvent applicationEvent) {
+        applicationEventPublisher.publishEvent(applicationEvent);
     }
 
 }
