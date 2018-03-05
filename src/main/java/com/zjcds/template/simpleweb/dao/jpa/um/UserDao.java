@@ -27,7 +27,7 @@ public interface UserDao extends CustomRepostory<User,Integer>,UserDaoCustom {
     @Query("select u from User u where u.id = :id")
     public User findById(@Param("id") Integer id);
 
-    @Query("select distinct m from User u left join u.roles r left join r.menus m where u.id = :id")
+    @Query("select distinct m from User u join u.roles r join r.menus m where u.id = :id")
     public Set<Menu> findMenusForUser(@Param("id") Integer id);
 
     @Query("select count(u) from User u left join u.roles r where u.status='active' and r.id = :roleId")
