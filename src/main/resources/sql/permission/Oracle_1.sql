@@ -1,11 +1,3 @@
--- ID生成表,所有业务表通用
-CREATE TABLE t_id_generator(id_key VARCHAR2(30),id_value INT NOT NULL,primary key (id_key));
--- 系统日志表
-CREATE TABLE t_sys_log(id INT,operation_user VARCHAR2(30) NOT NULL,create_time DATE NOT NULL,log_group VARCHAR2(40) not null ,log_event VARCHAR2(40) NOT NULL ,detail VARCHAR2(1000) NOT NULL ,PRIMARY KEY (id));
-CREATE INDEX index_sys_log_1 ON t_sys_log(create_time,log_group,log_event,operation_user);
-CREATE INDEX index_sys_log_2 ON t_sys_log(create_time,operation_user,log_group,log_event);
-INSERT INTO t_id_generator(id_key,id_value) VALUES ('sysLog',1);
-
 -- 权限相关表
 create table t_user(id int not null,account  varchar2(30) not null,name varchar2(50) not null,password varchar2(80) not null,status varchar2(15) not null,create_time DATE ,modify_time DATE,primary key (ID));
 create table t_role(id  INT not null,name varchar2(30) not null,description varchar2(100),create_time DATE ,modify_time DATE,PRIMARY KEY (ID));
@@ -23,3 +15,4 @@ INSERT INTO r_user_role(user_id,role_id) VALUES(1,0);
 INSERT INTO t_menu (id, name, icon, url, code, hide) VALUES (1, '系统管理', 'Hui-iconfont-system', null, '900', 'N')
 INSERT INTO t_menu (id, name, icon, url, code, hide) VALUES (2, '账号管理', null, 'manager/userManager', '900100', 'N')
 INSERT INTO t_menu (id, name, icon, url, code, hide) VALUES (3, '角色管理', null, 'manager/roleManager', '900200', 'N')
+INSERT INTO t_menu (id, name, icon, url, code, hide) VALUES (4, '系统日志', null, 'manager/logManager', '900400', 'N')

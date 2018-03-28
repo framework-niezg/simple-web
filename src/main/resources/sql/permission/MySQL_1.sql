@@ -1,11 +1,3 @@
--- ID生成表,所有业务表通用
-CREATE TABLE t_id_generator(id_key VARCHAR(30) PRIMARY KEY,id_value INT NOT NULL)
--- 系统日志表
-CREATE TABLE t_sys_log(id INT PRIMARY KEY ,operation_user VARCHAR(30) NOT NULL,create_time DATETIME NOT NULL ,log_group VARCHAR(40) not null,log_event VARCHAR(40) NOT NULL ,detail VARCHAR(1000) NOT NULL )
-CREATE INDEX index_sys_log_1 ON t_sys_log(create_time,log_group,log_event,operation_user)
-CREATE INDEX index_sys_log_2 ON t_sys_log(create_time,operation_user,log_group,log_event)
-INSERT INTO t_id_generator(id_key,id_value) VALUES ('sysLog',1)
-
 -- 权限相关表
 create table t_user(id int not null,account  varchar(30) not null,name varchar(50) not null,password varchar(80) not null,status varchar(15) not null,create_time DATETIME ,modify_time DATETIME ,primary key (id));
 create table t_role(id  INT not null,name varchar(30) not null,description varchar(100),create_time DATETIME ,modify_time DATETIME,primary key (id));
@@ -19,7 +11,9 @@ INSERT INTO t_id_generator(id_key,id_value) VALUES ('menu',1000)
 INSERT INTO t_role(id,name,description) VALUES(0,'root','超级管理员')
 INSERT INTO t_user(id,account,name,password,status) VALUES(1,'root','超级管理员','6ee93a8e0dba1d3e7d78be0403474aa82df9fdf68f13e748bb5bb539040f8b03efeb176ebb104e54','active')
 INSERT INTO r_user_role(user_id,role_id) VALUES(1,0)
+
 -- 添加权限部分的菜单项
 INSERT INTO t_menu (id, name, icon, url, code, hide) VALUES (1, '系统管理', 'Hui-iconfont-system', null, '900', 'N')
 INSERT INTO t_menu (id, name, icon, url, code, hide) VALUES (2, '账号管理', null, 'manager/userManager', '900100', 'N')
 INSERT INTO t_menu (id, name, icon, url, code, hide) VALUES (3, '角色管理', null, 'manager/roleManager', '900200', 'N')
+INSERT INTO t_menu (id, name, icon, url, code, hide) VALUES (4, '系统日志', null, 'manager/logManager', '900400', 'N')
