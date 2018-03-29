@@ -42,6 +42,17 @@ public class SqlAutoUpdateConfiguration {
                 .build();
     }
 
+    /**
+     * 业务模块的数据库升级配置
+     * @return
+     */
+    @Bean
+    public ModulePropertiesConfig ywModulePropertiesConfig(ModuleDBAutoUpdateProperties moduleDBAutoUpdateProperties) {
+        return ModulePropertiesConfig.newBuilder()
+                .moduleProperties(moduleDBAutoUpdateProperties.getYw())
+                .build();
+    }
+
     @Getter
     @Setter
     @ConfigurationProperties(prefix = DBAutoUpdatePropertiesPath)
@@ -50,5 +61,7 @@ public class SqlAutoUpdateConfiguration {
         private ModuleProperties core;
         @NestedConfigurationProperty
         private ModuleProperties permission;
+        @NestedConfigurationProperty
+        private ModuleProperties yw;
     }
 }
