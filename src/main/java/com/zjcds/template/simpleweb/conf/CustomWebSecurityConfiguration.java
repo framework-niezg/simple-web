@@ -1,6 +1,10 @@
 package com.zjcds.template.simpleweb.conf;
 
+import com.zjcds.template.simpleweb.service.AuthorizeService;
 import com.zjcds.template.simpleweb.service.UserService;
+import com.zjcds.template.simpleweb.service.impl.DelegateAuthorizeService;
+import com.zjcds.template.simpleweb.service.impl.MenuAuthorizeService;
+import com.zjcds.template.simpleweb.service.impl.RootRoleAuthorizeService;
 import com.zjcds.template.simpleweb.utils.WebSecurityUtils;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,6 +33,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * created date：2017-02-08
@@ -86,7 +93,8 @@ public class CustomWebSecurityConfiguration implements ApplicationContextAware{
                     .antMatchers("/druid/**","/mgmt/**").hasRole(WebSecurityUtils.RootUserRole)
                     //.anyRequest().permitAll()
                     .anyRequest().authenticated()
-                .and()
+                    .anyRequest().access("@delegateAuthorizeService.check(authentication,request)")
+                    .and()
                     .csrf().disable();
             configureSessionManage(http);
             configureLogout(http);
@@ -190,5 +198,37 @@ public class CustomWebSecurityConfiguration implements ApplicationContextAware{
 //    public RequestDataValueProcessor requestDataValueProcessor(){
 //        return new CsrfRequestDataValueProcessor();
 //    }
+
+    @Configuration
+    public static class AuthorizeConfiguration implements ApplicationContextAware {
+        @Override
+        public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+            DelegateAuthorizeService delegateAuthorizeService = applicationContext.getBean(DelegateAuthorizeService.class);
+            Map<String, AuthorizeService> authorizeServiceMap = applicationContext.getBeansOfType(AuthorizeService.class);
+            if (authorizeServiceMap.size() > 0) {
+                List<AuthorizeService> authorizeServices = new ArrayList<>(authorizeServiceMap.values());
+                authorizeServices.sort(Comparator.comparing(AuthorizeService::getOrder));
+                delegateAuthorizeService.setDelegates(authorizeServices);
+            } else {
+                delegateAuthorizeService.setDelegates(new ArrayList<>());
+            }
+        }
+
+        @Bean
+        public DelegateAuthorizeService delegateAuthorizeService() {
+            return new DelegateAuthorizeService();
+        }
+
+        @Bean
+        public MenuAuthorizeService menuAuthorizeService() {
+            return new MenuAuthorizeService("/**");
+        }
+
+        @Bean
+        public RootRoleAuthorizeService rootRoleAuthorizeService() {
+            RootRoleAuthorizeService rootRoleAuthorizeService = new RootRoleAuthorizeService();
+            return rootRoleAuthorizeService;
+        }
+    }
 
 }
