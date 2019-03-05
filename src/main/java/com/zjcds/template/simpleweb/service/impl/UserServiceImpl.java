@@ -7,6 +7,7 @@ import com.zjcds.common.dozer.BeanPropertyCopyUtils;
 import com.zjcds.common.jpa.PageResult;
 
 import com.zjcds.common.syslog.domain.SysLogApplicationEvent;
+import com.zjcds.common.syslog.service.SpringEventPublishService;
 import com.zjcds.common.syslog.util.LogRegisterUtils;
 import com.zjcds.template.simpleweb.conf.SysLogApplicationEventConfiguration;
 import com.zjcds.template.simpleweb.domain.dto.ChangePasswordForm;
@@ -22,7 +23,6 @@ import com.zjcds.template.simpleweb.dao.jpa.um.UserDao;
 import com.zjcds.template.simpleweb.domain.event.UserAddEvent;
 import com.zjcds.template.simpleweb.domain.event.UserDeleteEvent;
 import com.zjcds.template.simpleweb.domain.event.UserUpdateEvent;
-import com.zjcds.template.simpleweb.service.SpringEventPublishService;
 import com.zjcds.template.simpleweb.service.UserService;
 import com.zjcds.template.simpleweb.utils.WebSecurityUtils;
 import org.apache.commons.codec.binary.StringUtils;

@@ -5,7 +5,7 @@
 
 	<groupId>com.zjcds.template</groupId>
 	<artifactId>simple-web</artifactId>
-	<version>2.1</version>
+	<version>3.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>simple-web</name>
@@ -14,7 +14,7 @@
 	<parent>
 		<groupId>com.zjcds.common</groupId>
 		<artifactId>cds-common-parent</artifactId>
-		<version>2.1</version>
+		<version>3.0-SNAPSHOT</version>
 	</parent>
 	<scm>
 		<connection>scm:git:http://115.236.161.138/template/simple-web.git</connection>
@@ -56,9 +56,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.zjcds.common</groupId>
-			<artifactId>cds-starter-db-auto-update</artifactId>
-		</dependency>
+		<groupId>com.zjcds.common</groupId>
+		<artifactId>cds-starter-db-auto-update</artifactId>
+	</dependency>
 
 
 		<dependency>
