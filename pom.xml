@@ -133,6 +133,19 @@
 			<groupId>com.zjcds.common</groupId>
 			<artifactId>cds-starter-syslog</artifactId>
 		</dependency>
+		<!--jwt tools-->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-impl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt-jackson</artifactId>
+		</dependency>
 
 		<!--<dependency>-->
 			<!--<groupId>org.springframework.boot</groupId>-->
